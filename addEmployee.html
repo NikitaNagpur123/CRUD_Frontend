@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>addEmployee</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Employee Management</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Home</a
+              >
+            </li>
+            <div class="navbar-nav">
+              <a class="nav-link" href="empDesignation.html">Serach Employee</a>
+              <a class="nav-link" href="empSalary.html">Employee Salary</a>
+             
+              <a class="nav-link " href="addEmployeeSalary.html" >Generate Monthly Salary</a>
+              <a class="nav-link " href="viewEmpSalary.html" >View Salary</a>
+
+            </div>
+          </ul>
+          <!-- <form class="d-flex">
+                    <button class="btn btn-outline-dark btn-light" type="button" onclick="window.location.href='addEmployee.html'">Add Employee</button>
+                </form> -->
+        </div>
+      </div>
+    </nav>
+
+    <center>
+      <div class="justify-content-center align-items-center mt-4">
+        <h2>Employee Details Form</h2>
+      </div>
+    </center>
+    <div class="container bg-light">
+      <div
+        class="d-flex justify-content-center align-items-center"
+        style="min-height: 70vh"
+      >
+        <!-- <form class="w-50" onsubmit="submitForm(event)"> -->
+
+        <form class="w-50" id="empform" onsubmit="saveemp()">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- <div class="form-group">
+                <label for="inputId">Id</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="inputId"
+                  value="id"
+                />
+              </div> -->
+              <div class="form-group">
+                <label for="inputName">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputName"
+                  placeholder="Enter your name" required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputDesignation">Designation</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputDesignation"
+                  placeholder="Enter designation" required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <label for="inputAddress">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              placeholder="Enter Your Address" required
+            />
+          </div>
+          <div class="form-group mt-3">
+            <label for="inputJDate">Joining Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="inputJDate"
+              placeholder="Enter date" required
+            />
+          </div>
+          <!-- <div class="row">
+            <div>
+              <div class="form-group mt-3 col-md-6">
+                <label for="inputSalary">Gross Salary</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="inputSalary"
+                  placeholder="Enter gross salary"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="inputDesignation">Salary Month</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputDesignation"
+                placeholder="Enter Month"
+              />
+            </div> -->
+            <div class="row">
+              <!-- Gross Salary -->
+              <div class="form-group mt-3 ">
+                <label for="inputSalary">Gross Salary</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="inputSalary"
+                  placeholder="Enter gross salary"
+                />
+              </div>
+              
+              </div>
+            
+              
+            </div>
+            
+          <div class="d-flex justify-content-center gap-4 mt-4">
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+            <!-- <button type="button" class="btn btn-primary">Edit</button>
+                                   <button type="button" class="btn btn-primary">Delete</button> -->
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="container mt-4" id="ww">
+      <center>
+        <div class="justify-content-center align-items-center mt-4">
+          <h2>List All Of Employees</h2>
+        </div>
+      </center>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered mt-3">
+          <thead class="thead-dark">
+            <tr>
+              <th class="col-1">Id</th>
+              <th class="col-2">Name</th>
+              <th class="col-2">EmpCode</th>
+              <th class="col-3">Address</th>
+              <th class="col-2">Joining Date</th>
+              <th class="col-2">Designation</th>
+              <th class="col-2">Gross Salary</th>
+              <th class="col-2">Basic Salary</th>
+              <th class="col-1">TA</th>
+              <th class="col-1">DA</th>
+              <th class="col-1">PF</th>
+              <th class="col-1">Other</th>
+              <th class="col-2">Net Salary</th>
+              <th class="col-2">Deduction</th>
+              <th class="col-2">Insurance</th>
+              <th class="col-1">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="employeeTableBody"></tbody>
+        </table>
+      </div>
+      
+          
+    </div>
+    <script src="script.js"></script>
+  </body>
+  <script>
+    let updateId;
+
+    //fetch post api
+    function saveemp() {
+      const name = document.getElementById("inputName").value;
+      const designation = document.getElementById("inputDesignation").value;
+      const address = document.getElementById("inputAddress").value;
+      const joiningDate = document.getElementById("inputJDate").value;
+      const grossSalary = document.getElementById("inputSalary").value;
+      
+
+
+      const employeeData = {
+        name: name,
+        designation: designation,
+        address: address,
+        jDate: joiningDate,
+        grossSalary: grossSalary,
+        
+      };
+      if (updateId != null) {
+        fetch("http://localhost:8080/api/employees/updateEmp/" + updateId, {
+          method: "put",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(employeeData),
+        });
+      } else {
+        fetch("http://localhost:8080/api/employees/empPost", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(employeeData),
+        });
+      }
+    }
+
+    // get method-------------------------
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("http://localhost:8080/api/employees/empAllEmp")
+        .then((response) => response.json())
+        .then((data) => {
+          const tbody = document.getElementById("employeeTableBody");
+
+          // Clear any existing rows
+          tbody.innerHTML = "";
+
+          // Iterate through the fetched employee data
+          data.forEach((employee) => {
+            const tr = document.createElement("tr");
+
+            // Create and append table cells (td) for each column
+            tr.innerHTML = `
+                <td>${employee.id}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.empCode}</td>
+                    <td>${employee.address}</td>
+                    <td>${employee.jDate}</td>
+                    <td>${employee.designation.designation}</td>
+                    <td>${employee.salary.grossSalary}</td>
+                    <td>${employee.salary.basicSalary}</td>
+                    <td>${employee.salary.ta}</td>
+                    <td>${employee.salary.da}</td>
+                    <td>${employee.salary.pf}</td>
+                    <td>${employee.salary.other}</td>
+                    <td>${employee.salary.finalBasicSalary}</td>
+                    <td>${employee.salary.deduction}</td>
+                    
+                    <td>${employee.insurance}</td>
+                
+                 <td>
+                    <button class="btn btn-primary btn-sm" onclick="editEmployee(${employee.id})">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteEmployee(${employee.id})">Delete</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching employee data:", error);
+        });
+    });
+
+    //delete employee by id
+
+    function deleteEmployee(id) {
+      if (confirm("Are you sure you want to delete this employee?")) {
+        fetch(`http://localhost:8080/api/employees/deleteEmp/${id}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Employee deleted successfully");
+              location.reload();
+            } else {
+              alert("Failed to delete employee");
+            }
+          })
+          .catch((error) => console.error(("Error:", error)));
+      }
+    }
+
+    // edit employee by id
+    function editEmployee(employeeId) {
+      //   isUpdate = true;
+      console.log("dhvshvhv");
+      // AJAX GET request to fetch employee data by ID
+      $.ajax({
+        url: `http://localhost:8080/api/employees/empId/${employeeId}`, // Replace with your actual API endpoint
+        type: "GET",
+        success: function (response) {
+          // Populate the form fields with the fetched employee data
+          updateId = response.id;
+          console.log("updateId", updateId);
+          $("#inputId").val(response.id);
+          $("#inputName").val(response.name);
+          $("#inputDesignation").val(response.designation.designation);
+          $("#inputAddress").val(response.address);
+          $("#inputJDate").val(response.jDate);
+          $("#inputSalary").val(response.salary.grossSalary);
+          $("#inputMonth").val(response.salary.salaryMonth);
+        },
+        error: function (xhr, status, error) {
+          // Handle errors here
+          console.error("Error:", error);
+          alert("Failed to load employee data.");
+        },
+      });
+    }
+  </script>
+</html>
